@@ -29,6 +29,7 @@ void Creator::Initialize(std::string sCircuit)
 		// Skip comments
 		if (token[0] != '#')
 		{
+			// Swap from creating to linking after empty line
 			if (token.size() == 0)
 			{
 				Linking = true;;
@@ -36,9 +37,9 @@ void Creator::Initialize(std::string sCircuit)
 			else
 			{
 				if (!Linking)
-					CreateNode(token.c_str());
+					CreateNode(token);
 				else
-					LinkNode(token.c_str());
+					LinkNode(token);
 			}
 		}
 		sCircuit.erase(0, pos + delimiter.length());
@@ -47,9 +48,8 @@ void Creator::Initialize(std::string sCircuit)
 
 int Creator::CreateNode(std::string& rsNode)
 {
-	szNode.erase( remove( s.begin(), s.end(), ' ' ), s.end() );
 	ConsoleApp::Write("Creating node: ");
-	ConsoleApp::Write(szNode);
+	ConsoleApp::Write(rsNode.c_str());
 	ConsoleApp::Write("\n");
 	return 0;
 }
@@ -57,7 +57,7 @@ int Creator::CreateNode(std::string& rsNode)
 int Creator::LinkNode(std::string& rsNode)
 {
 	ConsoleApp::Write("Linking node: ");
-	ConsoleApp::Write(szNode);
+	ConsoleApp::Write(rsNode.c_str());
 	ConsoleApp::Write("\n");
 	return 0;
 }

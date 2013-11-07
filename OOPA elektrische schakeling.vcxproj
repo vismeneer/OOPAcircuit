@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0289831B-6D61-4049-9627-2B420E2B26B2}</ProjectGuid>
+    <ProjectGuid>{9FFBAC13-CE2B-4E8A-91D6-C818BE5116F4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>OOPAelektrischeschakeling</RootNamespace>
   </PropertyGroup>
