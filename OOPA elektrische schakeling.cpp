@@ -4,7 +4,6 @@
 #include "stdafx.h"
 #include "ConsoleApp.h"
 
-
 int _tmain(int argc, _TCHAR* argv[])
 {
 	ConsoleApp *pApp = new ConsoleApp;

@@ -23,7 +23,7 @@ int FileReader::ReadFile(std::string& rsText)
 	using namespace std;
 
 	string sLine;
-	ifstream myfile (m_sFileName);
+	ifstream myfile(m_sFileName);
 	if (myfile.is_open())
 	{
 		while ( getline (myfile,sLine) )
@@ -35,7 +35,7 @@ int FileReader::ReadFile(std::string& rsText)
 	}
 	else 
 	{
-		ConsoleApp::Write("Unable to open file.");
+		ConsoleApp::Write("De file kan niet geopend worden.");
 		return 0;
 	}
 }

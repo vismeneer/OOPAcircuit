@@ -79,21 +79,37 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AndNode.h" />
     <ClInclude Include="ConsoleApp.h" />
     <ClInclude Include="Creator.h" />
+    <ClInclude Include="EndNode.h" />
     <ClInclude Include="FileReader.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="NotNode.h" />
+    <ClInclude Include="OrNode.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="StartNode.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AndNode.cpp" />
     <ClCompile Include="ConsoleApp.cpp" />
     <ClCompile Include="Creator.cpp" />
+    <ClCompile Include="EndNode.cpp" />
     <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="NotNode.cpp" />
     <ClCompile Include="OOPA elektrische schakeling.cpp" />
+    <ClCompile Include="OrNode.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="StartNode.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OOPA elektrische schakeling.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

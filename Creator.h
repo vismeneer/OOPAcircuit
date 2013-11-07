@@ -1,21 +1,25 @@
 #pragma once
 
 #include "FileReader.h"
-#include <list>
+#include <vector>
+#include "Node.h"
 
 class Creator
 {
 public:
-	Creator(FileReader& rReader);
-	~Creator(void);
+	Creator(void);
+	virtual ~Creator(void);
+	int Create(FileReader* pReader);
+
+
+	std::vector<Node*> m_vNodes;
+	std::vector<Node*> m_vProbes;
 
 private:
-	void Initialize(std::string sCircuit);
+	int Initialize(std::string sCircuit);
 	int CreateNode(std::string& rsCircuit);
 	int LinkNode(std::string& rsCircuit);
-
-	std::list<int> Inputs;
-	std::list<int> Outputs;
-	std::list<int> Nodes;
+	void SplitTrim(std::string sCircuit, std::vector<std::string>& rsaValues);
+	Node* FindNode(const char* szIdentifier);
 };
 

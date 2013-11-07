@@ -1,4 +1,8 @@
 #pragma once
+
+#include <vector>
+#include "Node.h"
+
 class ConsoleApp
 {
 
@@ -10,5 +14,6 @@ public:
 
 private:
 	void CreateCircuit(const char* szFileName);
+	void RunCircuit(std::vector<Node*>& rvNodes, std::vector<Node*>& rvProbes);
 };
 
