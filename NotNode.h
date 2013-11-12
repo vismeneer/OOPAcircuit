@@ -4,10 +4,15 @@ class NotNode :
 	public Node
 {
 public:
-	NotNode(const char* szIdentifier);
+	NotNode(void);
+	NotNode(const char* szType);
 	virtual ~NotNode(void);
 
-	int SendSignal();
-	void GetIdentifier(std::string& rsIdentifier);
+	virtual Node* Clone() const;
+	virtual int SendSignal();
+	virtual int ProcessSignals();
+
+private:
+    static NotNode m_cNotNode;
 };
 

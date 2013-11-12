@@ -2,16 +2,33 @@
 #include "AndNode.h"
 #include "ConsoleApp.h"
 
-AndNode::AndNode(const char* szIdentifier) : Node(szIdentifier)
+AndNode AndNode::m_cAndNode("AND");
+
+AndNode::AndNode(const char* szType) : Node(szType)
 {
 }
 
+AndNode::AndNode(void)
+{
+}
 
 AndNode::~AndNode(void)
 {
 }
 
+Node* AndNode::Clone() const
+{
+	return new AndNode;
+}
+
 int AndNode::SendSignal()
+{
+	if (ProcessSignals())
+		return Node::SendSignal();
+	return 0;
+}
+
+int AndNode::ProcessSignals()
 {
 	if (m_vInputs.size() < 2)
 	{
@@ -29,12 +46,5 @@ int AndNode::SendSignal()
 				m_bSignal = false;
 		}
 	}
-	
-	Node::SendSignal();
 	return 1;
-}
-
-void AndNode::GetIdentifier(std::string& rsIdentifier)
-{
-	rsIdentifier = m_sIdentifier;
 }

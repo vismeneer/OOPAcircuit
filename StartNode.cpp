@@ -1,24 +1,31 @@
 #include "stdafx.h"
 #include "StartNode.h"
 
+StartNode StartNode::m_cStartNode("INPUT");
 
-StartNode::StartNode(const char* szIdentifier, bool bSignal) : Node(szIdentifier)
+StartNode::StartNode(const char* szType) : Node(szType)
 {
-	m_bSignal = bSignal;
 }
 
+StartNode::StartNode(void)
+{
+}
 
 StartNode::~StartNode(void)
 {
 }
 
-int StartNode::SendSignal()
+Node* StartNode::Clone() const
 {
-	Node::SendSignal();
-	return 1;
+	return new StartNode;
 }
 
-void StartNode::GetIdentifier(std::string& rsIdentifier)
+int StartNode::SendSignal()
 {
-	rsIdentifier = m_sIdentifier;
+	return Node::SendSignal();
+}
+
+int StartNode::ProcessSignals()
+{
+	return 0;
 }

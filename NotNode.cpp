@@ -2,16 +2,33 @@
 #include "NotNode.h"
 #include "ConsoleApp.h"
 
-NotNode::NotNode(const char* szIdentifier) : Node(szIdentifier)
+NotNode NotNode::m_cNotNode("NOT");
+
+NotNode::NotNode(const char* szType) : Node(szType)
 {
 }
 
+NotNode::NotNode(void)
+{
+}
 
 NotNode::~NotNode(void)
 {
 }
 
+Node* NotNode::Clone() const
+{
+	return new NotNode;
+}
+
 int NotNode::SendSignal()
+{
+	if (ProcessSignals())
+		return Node::SendSignal();
+	return 0;
+}
+
+int NotNode::ProcessSignals()
 {
 	if (m_vInputs.size() < 1 || m_vInputs.size() > 1)
 	{
@@ -24,12 +41,5 @@ int NotNode::SendSignal()
 	{
 		m_bSignal = !m_vInputs[0];
 	}
-	
-	Node::SendSignal();
 	return 1;
-}
-
-void NotNode::GetIdentifier(std::string& rsIdentifier)
-{
-	rsIdentifier = m_sIdentifier;
 }

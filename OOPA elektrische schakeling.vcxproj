@@ -85,6 +85,7 @@
     <ClInclude Include="EndNode.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeFactory.h" />
     <ClInclude Include="NotNode.h" />
     <ClInclude Include="OrNode.h" />
     <ClInclude Include="resource.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="Creator.cpp" />
     <ClCompile Include="EndNode.cpp" />
     <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="NodeFactory.cpp" />
     <ClCompile Include="NotNode.cpp" />
     <ClCompile Include="OOPA elektrische schakeling.cpp" />
     <ClCompile Include="OrNode.cpp" />

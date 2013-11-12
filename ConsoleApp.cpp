@@ -78,8 +78,7 @@ void ConsoleApp::RunCircuit(std::vector<Node*>& rvNodes, std::vector<Node*>& rvP
 	for(std::vector<Node*>::iterator it = rvProbes.begin(); it != rvProbes.end(); ++it)
 	{
 		Node* pNode = *it;
-		std::string sMessage;
-		pNode->GetIdentifier(sMessage);
+		std::string sMessage = pNode->m_sIdentifier;
 		if (pNode->m_bSignal)
 			sMessage.append(": 1\n");
 		else

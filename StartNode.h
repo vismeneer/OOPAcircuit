@@ -6,10 +6,15 @@ class StartNode :
 	public Node
 {
 public:
-	StartNode(const char* szIdentifier, bool bSignal);
+	StartNode(void);
+	StartNode(const char* szType);
 	virtual ~StartNode(void);
 
-	int SendSignal();
-	void GetIdentifier(std::string& rsIdentifier);
+	virtual Node* Clone() const;
+	virtual int SendSignal();
+	virtual int ProcessSignals();
+
+private:
+    static StartNode m_cStartNode;
 };
 

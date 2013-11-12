@@ -2,16 +2,31 @@
 #include "EndNode.h"
 #include "ConsoleApp.h"
 
-EndNode::EndNode(const char* szIdentifier) : Node(szIdentifier)
+EndNode EndNode::m_cEndNode("PROBE");
+
+EndNode::EndNode(const char* szType) : Node(szType)
 {
 }
 
+EndNode::EndNode(void)
+{
+}
 
 EndNode::~EndNode(void)
 {
 }
 
+Node* EndNode::Clone() const
+{
+	return new EndNode;
+}
+
 int EndNode::SendSignal()
+{
+	return ProcessSignals();
+}
+
+int EndNode::ProcessSignals()
 {
 	if (m_vInputs.size() < 1 || m_vInputs.size() > 1)
 	{
@@ -23,9 +38,4 @@ int EndNode::SendSignal()
 	else
 		m_bSignal = m_vInputs[0];
 	return 1;
-}
-
-void EndNode::GetIdentifier(std::string& rsIdentifier)
-{
-	rsIdentifier = m_sIdentifier;
 }

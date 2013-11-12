@@ -2,16 +2,33 @@
 #include "OrNode.h"
 #include "ConsoleApp.h"
 
-OrNode::OrNode(const char* szIdentifier) : Node(szIdentifier)
+OrNode OrNode::m_cOrNode("OR");
+
+OrNode::OrNode(const char* szType) : Node(szType)
 {
 }
 
+OrNode::OrNode(void)
+{
+}
 
 OrNode::~OrNode(void)
 {
 }
 
+Node* OrNode::Clone() const
+{
+	return new OrNode;
+}
+
 int OrNode::SendSignal()
+{
+	if (ProcessSignals())
+		return Node::SendSignal();
+	return 0;
+}
+
+int OrNode::ProcessSignals()
 {
 	if (m_vInputs.size() < 2)
 	{
@@ -29,12 +46,5 @@ int OrNode::SendSignal()
 				m_bSignal = true;
 		}
 	}
-	
-	Node::SendSignal();
 	return 1;
-}
-
-void OrNode::GetIdentifier(std::string& rsIdentifier)
-{
-	rsIdentifier = m_sIdentifier;
 }

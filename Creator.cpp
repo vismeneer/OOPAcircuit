@@ -2,12 +2,8 @@
 #include "Creator.h"
 #include "ConsoleApp.h"
 #include "Node.h"
-#include <algorithm> 
-#include "AndNode.h"
-#include "StartNode.h"
-#include "EndNode.h"
-#include "OrNode.h"
-#include "NotNode.h"
+#include <algorithm>
+#include "NodeFactory.h"
 
 Creator::Creator()
 {
@@ -63,7 +59,7 @@ int Creator::Initialize(std::string sCircuit)
 				{
 					if (!CreateNode(token))
 					{
-						ConsoleApp::Write("Fout tijdens het inlezen van het bestand.\n");
+						ConsoleApp::Write("Fout tijdens het parsen van het bestand.\n");
 						return 0;
 					}
 				}
@@ -71,7 +67,7 @@ int Creator::Initialize(std::string sCircuit)
 				{
 					if (!LinkNode(token))
 					{
-						ConsoleApp::Write("Fout tijdens het inlezen van het bestand.\n");
+						ConsoleApp::Write("Fout tijdens het parsen van het bestand.\n");
 						return 0;
 					}
 				}
@@ -85,29 +81,24 @@ int Creator::Initialize(std::string sCircuit)
 int Creator::CreateNode(std::string& rsNode)
 {
 	std::vector<std::string> vElements;
-
 	SplitTrim(rsNode, vElements);
-
 	// Vector should consist of 2 elements at this point.
 	if (vElements.size() == 2)
 	{
-		if (vElements[1].compare("INPUT_HIGH") == 0)
-			m_vNodes.push_back(new StartNode(vElements[0].c_str(), true));
-		else if (vElements[1].compare("INPUT_LOW") == 0)
-			m_vNodes.push_back(new StartNode(vElements[0].c_str(), false));
-		else if (vElements[1].compare("AND") == 0)
-			m_vNodes.push_back(new AndNode(vElements[0].c_str()));
-		else if (vElements[1].compare("OR") == 0)
-			m_vNodes.push_back(new OrNode(vElements[0].c_str()));
-		else if (vElements[1].compare("NOT") == 0)
-			m_vNodes.push_back(new NotNode(vElements[0].c_str()));
-		else if (vElements[1].compare("PROBE") == 0)
-			m_vProbes.push_back(new EndNode(vElements[0].c_str()));
-		else
+		// catch input_low/high by cutting off _low/_high for the factory
+		Node* pNode = NodeFactory::create(vElements[1].substr(0,5).c_str());
+		if (!pNode)
 			return 0;
+	
+		// Set nodes variables
+		pNode->m_sIdentifier = vElements[0].c_str();
+		if (vElements[0].compare("INPUT_HIGH") == 0)
+			pNode->m_bSignal = true;
+		if (vElements[0].compare("INPUT_LOW") == 0)
+			pNode->m_bSignal = false;
+
 		return 1;
 	}
-	
 	return 0;
 }
 
@@ -169,8 +160,7 @@ Node* Creator::FindNode(const char* szIdentifier)
 {
 	for (Node* pNode : m_vNodes)
 	{
-		std::string sIdentifier;
-		pNode->GetIdentifier(sIdentifier);
+		std::string sIdentifier = pNode->m_sIdentifier;
 		if (sIdentifier.compare(szIdentifier) == 0)
 			return pNode;
 	}

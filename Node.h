@@ -1,22 +1,22 @@
 #pragma once
-#include <iostream>
+#include <string>
 #include <vector>
+
 
 class Node
 {
 public:
-	Node(const char* szIdentifier);
+	Node(void);
+	Node(const char*);
 	virtual ~Node(void);
 
-	virtual int SendSignal();
-	virtual void GetIdentifier(std::string& rsIdentifier) = 0;
-
+	virtual Node* Clone() const = 0;
+	virtual int SendSignal() = 0;
+	//virtual int ProcessSignals();
 
 	bool m_bSignal;
+	std::string m_sIdentifier;
 	std::vector<bool> m_vInputs;
 	std::vector<Node*> m_vNextNodes;
-
-protected:
-	std::string m_sIdentifier;
 };
 

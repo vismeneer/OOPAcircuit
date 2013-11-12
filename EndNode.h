@@ -4,10 +4,15 @@ class EndNode :
 	public Node
 {
 public:
-	EndNode(const char* szIdentifier);
+	EndNode(void);
+	EndNode(const char* szType);
 	virtual ~EndNode(void);
 
-	int SendSignal();
-	void GetIdentifier(std::string& rsIdentifier);
+	virtual Node* Clone() const;
+	virtual int SendSignal();
+	virtual int ProcessSignals();
+
+private:
+    static EndNode m_cEndNode;
 };
 

@@ -4,10 +4,15 @@ class OrNode :
 	public Node
 {
 public:
-	OrNode(const char* szIdentifier);
+	OrNode(void);
+	OrNode(const char* szType);
 	virtual ~OrNode(void);
 
-	int SendSignal();
-	void GetIdentifier(std::string& rsIdentifier);
+	virtual Node* Clone() const;
+	virtual int SendSignal();
+	virtual int ProcessSignals();
+
+private:
+    static OrNode m_cOrNode;
 };
 

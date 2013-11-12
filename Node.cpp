@@ -1,13 +1,16 @@
 #include "stdafx.h"
 #include "Node.h"
+#include "NodeFactory.h"
 
 
-Node::Node(const char* szIdentifier) 
+Node::Node(const char* szType)
 {
-	if (szIdentifier!= NULL) 
-		m_sIdentifier.append(szIdentifier);
+	NodeFactory::assign(szType, this);
 }
-	
+
+Node::Node(void) 
+{
+}
 Node::~Node(void) 
 {
 }

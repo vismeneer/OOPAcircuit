@@ -5,10 +5,15 @@
 class AndNode : public Node
 {
 public:
-	AndNode(const char* szIdentifier);
+	AndNode(void);
+	AndNode(const char* szType);
 	virtual ~AndNode(void);
 
-	int SendSignal();
-	void GetIdentifier(std::string& rsIdentifier);
+	virtual Node* Clone() const;
+	virtual int SendSignal();
+	virtual int ProcessSignals();
+
+private:
+    static AndNode m_cAndNode;
 };
 
